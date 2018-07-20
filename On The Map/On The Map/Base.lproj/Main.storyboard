@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZZA-Vz-4jZ">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Login View-->
+        <scene sceneID="ceL-cy-PCk">
+            <objects>
+                <viewController storyboardIdentifier="LoginViewController" title="LoginViewController" id="ZZA-Vz-4jZ" userLabel="Login View" customClass="LoginViewController" customModule="On_The_Map" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dv6-Yw-OIm"/>
+                        <viewControllerLayoutGuide type="bottom" id="HhM-EN-NXZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="BRf-Uh-YP7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="0sa-2I-IQS">
+                                <rect key="frame" x="16" y="55" width="343" height="594"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image" translatesAutoresizingMaskIntoConstraints="NO" id="EEN-Vu-1pe" userLabel="Udacity Image View">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="bRQ-7w-1hV"/>
+                                        </constraints>
+                                    </imageView>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Email" borderStyle="bezel" placeholder="Email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fK9-2v-eRn">
+                                        <rect key="frame" x="0.0" y="110" width="343" height="32"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="32" id="vTc-XW-dth"/>
+                                        </constraints>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" textContentType="username"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Password" borderStyle="bezel" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1QJ-Im-230">
+                                        <rect key="frame" x="0.0" y="152" width="343" height="32"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Cp-pS-jrT" customClass="BorderedButton" customModule="MyFavoriteMovies" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="194" width="343" height="44"/>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="PUf-qh-LSO"/>
+                                        </constraints>
+                                        <state key="normal" title="Login">
+                                            <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="248" text="Don't have an account? sign Up" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KU2-dB-atr">
+                                        <rect key="frame" x="0.0" y="248" width="343" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="XV7-Yj-T2V"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qZV-Ol-Xqx">
+                                        <rect key="frame" x="0.0" y="298" width="343" height="296"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="1QJ-Im-230" firstAttribute="height" secondItem="fK9-2v-eRn" secondAttribute="height" id="alI-xn-PeC"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="0sa-2I-IQS" firstAttribute="leading" secondItem="BRf-Uh-YP7" secondAttribute="leadingMargin" id="IQH-Qc-EFp"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="0sa-2I-IQS" secondAttribute="trailing" id="JTJ-a1-Zre"/>
+                            <constraint firstItem="0sa-2I-IQS" firstAttribute="top" secondItem="dv6-Yw-OIm" secondAttribute="bottom" constant="35" id="PXQ-XG-1AR"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="0sa-2I-IQS" secondAttribute="bottom" constant="18" id="ruo-sG-2OF"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="9Fl-57-D4X"/>
+                    </view>
+                    <connections>
+                        <outlet property="UdacityImageView" destination="EEN-Vu-1pe" id="5ZX-WH-ghm"/>
+                        <outlet property="debugTextLabel" destination="qZV-Ol-Xqx" id="Yjv-LX-WS5"/>
+                        <outlet property="loginButton" destination="6Cp-pS-jrT" id="gWy-un-xgx"/>
+                        <outlet property="passwordTextField" destination="1QJ-Im-230" id="YnC-hD-DsV"/>
+                        <outlet property="usernameTextField" destination="fK9-2v-eRn" id="qr7-wW-dvJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bzI-rm-DNd" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Q6p-2d-1ZO"/>
+            </objects>
+            <point key="canvasLocation" x="593" y="-219"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Image" width="112" height="112"/>
+    </resources>
+</document>
