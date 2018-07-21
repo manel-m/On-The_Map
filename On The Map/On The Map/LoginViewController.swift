@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController , UITextFieldDelegate{
     
     // MARK: Outletss
     
@@ -29,7 +29,43 @@ class LoginViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        usernameTextField.delegate = self
+        passwordTextField.delegate = self
+        
+        
+    }
+    
+    //UITextFieldDelegate
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField.text == "Email" || textField.text == "Password" {
+            textField.text = ""
+        }
+    }
+    private func completeLogin() {
+        if usernameTextField.text == "nadine" || passwordTextField.text == "yasmine" {
+            self.debugTextLabel.text = ""
+            let controller = self.storyboard!.instantiateViewController(withIdentifier: "UdacityTabBarController") as! UITabBarController
+            self.present(controller, animated: true, completion: nil)
+        } else {
+            debugTextLabel.text = "nnnnnnnnnnnnnn"
+            
+        } }
+    
 
+    @IBAction func loginPressed(_ sender: Any) {
+        
+        if usernameTextField.text!.isEmpty || passwordTextField.text!.isEmpty {
+            debugTextLabel.text = "Username or Password Empty."
+        } else {
+            completeLogin()
+            }
+        
+        }
 
 }
-
