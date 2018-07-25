@@ -48,7 +48,7 @@ class LoginViewController: UIViewController , UITextFieldDelegate{
         }
     }
     private func completeLogin() {
-        if usernameTextField.text == "nadine" || passwordTextField.text == "yasmine" {
+        if usernameTextField.text == "n" && passwordTextField.text == "y" {
             self.debugTextLabel.text = ""
             let controller = self.storyboard!.instantiateViewController(withIdentifier: "UdacityTabBarController") as! UITabBarController
             self.present(controller, animated: true, completion: nil)
