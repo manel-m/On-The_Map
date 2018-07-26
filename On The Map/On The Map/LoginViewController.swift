@@ -22,15 +22,15 @@ class LoginViewController: UIViewController , UITextFieldDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+       
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        debugTextLabel.text = ""
         usernameTextField.delegate = self
         passwordTextField.delegate = self
         
@@ -48,24 +48,85 @@ class LoginViewController: UIViewController , UITextFieldDelegate{
         }
     }
     private func completeLogin() {
-        if usernameTextField.text == "n" && passwordTextField.text == "y" {
+//        if usernameTextField.text == "n" && passwordTextField.text == "y" {
+//            self.debugTextLabel.text = ""
+//            let controller = self.storyboard!.instantiateViewController(withIdentifier: "UdacityTabBarController") as! UITabBarController
+//            self.present(controller, animated: true, completion: nil)
+//        } else {
+//            debugTextLabel.text = "Invalid Email or Password"
+//            
+//        }
+        performUIUpdatesOnMain {
             self.debugTextLabel.text = ""
             let controller = self.storyboard!.instantiateViewController(withIdentifier: "UdacityTabBarController") as! UITabBarController
             self.present(controller, animated: true, completion: nil)
-        } else {
-            debugTextLabel.text = "nnnnnnnnnnnnnn"
-            
-        } }
-    
+        }
+    }
 
     @IBAction func loginPressed(_ sender: Any) {
         
-        if usernameTextField.text!.isEmpty || passwordTextField.text!.isEmpty {
-            debugTextLabel.text = "Username or Password Empty."
+        let username = usernameTextField.text!
+        let password = passwordTextField.text!
+        if username.isEmpty || password.isEmpty {
+            debugTextLabel.text = "Email or Password Empty."
         } else {
-            completeLogin()
+            UdacityAuthentication(username, password)
+            //completeLogin()
             }
-        
+     
         }
+   
+    func UdacityAuthentication (_ username: String, _ password: String) {
+        var request = URLRequest(url: URL(string: "https://www.udacity.com/api/session")!)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = ("{\"udacity\": {\"username\": \""+username+"\", \"password\": \""+password+"\"}}").data(using: .utf8)
+        let session = URLSession.shared
+
+        let task = session.dataTask(with: request) { data, response, error in
+            // if an error occurs, print it and re-enable the UI
+            func displayError(_ error: String) {
+                print(error)
+                self.performUIUpdatesOnMain {
+                    self.debugTextLabel.text = "Login Failed."
+                }
+            }
+            /* GUARD: Was there an error? */
+            guard (error == nil) else {
+                displayError("There was an error with your request: \(error!)")
+                return
+            }
+            //            if error != nil { // Handle error…
+            //                print("ERROR")
+            //                return
+            //            }
+            /* GUARD: Did we get a successful 2XX response? */
+            guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
+                displayError("Your request returned a status code other than 2xx!: ")
+                return
+            }
+            
+            /* GUARD: Was there any data returned? */
+//            guard let data = data else {
+//                displayError("No data was returned by the request!")
+//                return
+//            }
+//            let range = Range(5..<data.count)
+//            let newData = data.subdata(in: range) /* subset response data! */
+//            print(String(data: newData, encoding: .utf8)!)
+            
+            self.completeLogin()
+        }
+        task.resume()
+        
+    }
+
+    func performUIUpdatesOnMain(_ updates: @escaping () -> Void) {
+        DispatchQueue.main.async {
+            updates()
+        }
+    }
+
 
 }
