@@ -133,12 +133,32 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="6zl-8M-bnh">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="Student Cell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Student Cell" textLabel="mRm-bu-kjN" detailTextLabel="r3K-Lw-cQW" imageView="4lK-t2-js5" style="IBUITableViewCellStyleSubtitle" id="6zl-8M-bnh" userLabel="Student Cell">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6zl-8M-bnh" id="L3N-Vj-TbC">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mRm-bu-kjN">
+                                            <rect key="frame" x="55" y="5" width="33.5" height="20.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="r3K-Lw-cQW">
+                                            <rect key="frame" x="55" y="25.5" width="33" height="14.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="PinIcon" id="4lK-t2-js5">
+                                            <rect key="frame" x="16" y="9" width="24" height="24"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </imageView>
+                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -336,16 +356,17 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="abu-dT-QK6" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="UH0-am-Atd"/>
             </objects>
-            <point key="canvasLocation" x="4023" y="-313"/>
+            <point key="canvasLocation" x="4417" y="-327"/>
         </scene>
     </scenes>
     <resources>
         <image name="AddPin" width="24" height="24"/>
+        <image name="PinIcon" width="24" height="24"/>
         <image name="RefreshIcon" width="24" height="24"/>
         <image name="UdacityImage" width="62" height="62"/>
         <image name="WorldIcon" width="52" height="67"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="XNG-yI-h6f"/>
+        <segue reference="bTt-Zv-wWa"/>
     </inferredMetricsTieBreakers>
 </document>

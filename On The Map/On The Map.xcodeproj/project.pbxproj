@@ -15,6 +15,7 @@
 		99BD33DF21014FD600C6F9B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99BD33DE21014FD600C6F9B6 /* Assets.xcassets */; };
 		99BD33E221014FD600C6F9B6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99BD33E021014FD600C6F9B6 /* LaunchScreen.storyboard */; };
 		99DCA80F21083DC00022D30D /* InformationPostingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DCA80E21083DC00022D30D /* InformationPostingViewController.swift */; };
+		99DCA811210969C00022D30D /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DCA810210969C00022D30D /* Student.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		99BD33E121014FD600C6F9B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		99BD33E321014FD600C6F9B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		99DCA80E21083DC00022D30D /* InformationPostingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationPostingViewController.swift; sourceTree = "<group>"; };
+		99DCA810210969C00022D30D /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 			children = (
 				99BD33D721014FD600C6F9B6 /* AppDelegate.swift */,
 				99BD33D921014FD600C6F9B6 /* LoginViewController.swift */,
+				99DCA810210969C00022D30D /* Student.swift */,
 				9974DCB42102F99E0060BE5E /* TableTabViewController.swift */,
 				9974DCB22102F9030060BE5E /* MapTabViewController.swift */,
 				99DCA80E21083DC00022D30D /* InformationPostingViewController.swift */,
@@ -146,6 +149,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				99BD33DA21014FD600C6F9B6 /* LoginViewController.swift in Sources */,
+				99DCA811210969C00022D30D /* Student.swift in Sources */,
 				99DCA80F21083DC00022D30D /* InformationPostingViewController.swift in Sources */,
 				9974DCB52102F99E0060BE5E /* TableTabViewController.swift in Sources */,
 				9974DCB32102F9030060BE5E /* MapTabViewController.swift in Sources */,
