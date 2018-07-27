@@ -48,14 +48,6 @@ class LoginViewController: UIViewController , UITextFieldDelegate{
         }
     }
     private func completeLogin() {
-//        if usernameTextField.text == "n" && passwordTextField.text == "y" {
-//            self.debugTextLabel.text = ""
-//            let controller = self.storyboard!.instantiateViewController(withIdentifier: "UdacityTabBarController") as! UITabBarController
-//            self.present(controller, animated: true, completion: nil)
-//        } else {
-//            debugTextLabel.text = "Invalid Email or Password"
-//            
-//        }
         performUIUpdatesOnMain {
             self.debugTextLabel.text = ""
             let controller = self.storyboard!.instantiateViewController(withIdentifier: "UdacityTabBarController") as! UITabBarController
@@ -71,7 +63,6 @@ class LoginViewController: UIViewController , UITextFieldDelegate{
             debugTextLabel.text = "Email or Password Empty."
         } else {
             UdacityAuthentication(username, password)
-            //completeLogin()
             }
      
         }
@@ -97,10 +88,7 @@ class LoginViewController: UIViewController , UITextFieldDelegate{
                 displayError("There was an error with your request: \(error!)")
                 return
             }
-            //            if error != nil { // Handle error…
-            //                print("ERROR")
-            //                return
-            //            }
+            
             /* GUARD: Did we get a successful 2XX response? */
             guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
                 displayError("Your request returned a status code other than 2xx!: ")
