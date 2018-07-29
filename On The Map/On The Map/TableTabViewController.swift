@@ -16,13 +16,18 @@ class TableTabViewController: UITableViewController {
     // Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
- 
+        
+        initStudents()
+    }
+
+    func initStudents() {
         students.append(Student(name: "Malak Matougui", url: "http://malak.matougui.com"))
         students.append(Student(name: "Malak Matougui", url: "http://malak.matougui.com"))
         students.append(Student(name: "Malak Matougui", url: "http://malak.matougui.com"))
         //let student = students[0]
         //let name = student.Name
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         self.tableView.reloadData()

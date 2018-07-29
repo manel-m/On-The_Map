@@ -232,7 +232,21 @@
                     <view key="view" contentMode="scaleToFill" id="pDp-zH-aaf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="AjG-sq-FI3">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <connections>
+                                    <outlet property="delegate" destination="tqc-lD-bvJ" id="nNG-LO-qEK"/>
+                                </connections>
+                            </mapView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="AjG-sq-FI3" firstAttribute="top" secondItem="2Xd-eR-bDo" secondAttribute="top" id="QMg-oW-utH"/>
+                            <constraint firstItem="2Xd-eR-bDo" firstAttribute="bottom" secondItem="AjG-sq-FI3" secondAttribute="bottom" id="dLd-4i-bYc"/>
+                            <constraint firstItem="AjG-sq-FI3" firstAttribute="leading" secondItem="2Xd-eR-bDo" secondAttribute="leading" id="dhJ-tC-1Ww"/>
+                            <constraint firstItem="2Xd-eR-bDo" firstAttribute="trailing" secondItem="AjG-sq-FI3" secondAttribute="trailing" id="kVD-Wc-suw"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="2Xd-eR-bDo"/>
                     </view>
                     <navigationItem key="navigationItem" title="On The Map" id="Qkl-K7-fHf">
@@ -254,10 +268,13 @@
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
+                    <connections>
+                        <outlet property="mapView" destination="AjG-sq-FI3" id="8bJ-Vp-8vc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="soQ-Uv-Wez" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3217" y="-850"/>
+            <point key="canvasLocation" x="3216.8000000000002" y="-850.52473763118451"/>
         </scene>
         <!--InformationPostingViewController-->
         <scene sceneID="tEl-eK-rNs">
@@ -367,6 +384,6 @@
         <image name="WorldIcon" width="52" height="67"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="bTt-Zv-wWa"/>
+        <segue reference="XNG-yI-h6f"/>
     </inferredMetricsTieBreakers>
 </document>
