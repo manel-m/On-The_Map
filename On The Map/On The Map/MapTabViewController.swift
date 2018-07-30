@@ -24,25 +24,23 @@ class MapTabViewController : UIViewController, MKMapViewDelegate {
         var annotations = [MKPointAnnotation]()
         for dictionary in locations {
             
-            // This is a version of the Double type.
-            let lat = CLLocationDegrees(dictionary["latitude"] as! Double)
-            let long = CLLocationDegrees(dictionary["longitude"] as! Double)
+            if let latitude = dictionary["latitude"] as? Double, let longitude = dictionary["longitude"] as? Double, let firstName = dictionary["firstName"] as? String, let lastName = dictionary["lastName"] as? String, let mediaURL = dictionary["mediaURL"] as? String {
+                // This is a version of the Double type.
+                let lat = CLLocationDegrees(latitude)
+                let long = CLLocationDegrees(longitude)
                 
-            // The lat and long are used to create a CLLocationCoordinates2D instance.
-            let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
+                // The lat and long are used to create a CLLocationCoordinates2D instance.
+                let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
                 
-            let first = dictionary["firstName"] as! String
-            let last = dictionary["lastName"] as! String
-            let mediaURL = dictionary["mediaURL"] as! String
+                // Here we create the annotation and set its coordiate, title, and subtitle properties
+                let annotation = MKPointAnnotation()
+                annotation.coordinate = coordinate
+                annotation.title = "\(firstName) \(lastName)"
+                annotation.subtitle = mediaURL
                 
-            // Here we create the annotation and set its coordiate, title, and subtitle properties
-            let annotation = MKPointAnnotation()
-            annotation.coordinate = coordinate
-            annotation.title = "\(first) \(last)"
-            annotation.subtitle = mediaURL
-                
-            // Finally we place the annotation in an array of annotations.
-            annotations.append(annotation)
+                // Finally we place the annotation in an array of annotations.
+                annotations.append(annotation)
+            }
         }
         // When the array is complete, we add the annotations to the map.
         self.mapView.addAnnotations(annotations)
