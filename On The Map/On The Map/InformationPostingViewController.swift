@@ -54,7 +54,6 @@ class InformationPostingViewController: UIViewController, UITextFieldDelegate {
             LocationManager.sharedInstance.getReverseGeoCodedLocation(address: LocationTextField.text!) {
             (location:CLLocation?, placemark:CLPlacemark?, error:NSError?) in
                 if error != nil {
-                    self.alertMessage(message: (error?.localizedDescription)!, buttonText: "OK", completionHandler: nil)
                     self.debugTextLabel.text = "Location Not Found"
                     return
                 }
