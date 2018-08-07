@@ -325,6 +325,10 @@
                                         <state key="normal" title="FIND LOCATION">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="FindLocation:" destination="W3U-4w-p8s" eventType="touchUpInside" id="Xb2-6q-m9m"/>
+                                            <segue destination="BnS-Ac-qpj" kind="showDetail" id="gSS-iJ-JeX"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5oJ-R5-2cS">
                                         <rect key="frame" x="0.0" y="248" width="343" height="346"/>
@@ -375,6 +379,67 @@
             </objects>
             <point key="canvasLocation" x="4417" y="-327"/>
         </scene>
+        <!--ShowLocationMapController-->
+        <scene sceneID="pvm-m3-ZzZ">
+            <objects>
+                <viewController storyboardIdentifier="ShowLocationMapController" id="BnS-Ac-qpj" userLabel="ShowLocationMapController" customClass="ShowLocationMapController" customModule="On_The_Map" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Yzk-fS-znB">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Hq-cM-Wci">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Add Location" id="HuG-3x-nOB">
+                                        <barButtonItem key="leftBarButtonItem" title="Add Location " id="02U-si-jKr">
+                                            <connections>
+                                                <action selector="AddLocation:" destination="BnS-Ac-qpj" id="XC2-PG-Fbv"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="mjD-Wu-eCo">
+                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BnS-Ac-qpj" id="0kQ-2M-IB7"/>
+                                </connections>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lwu-8U-eeI" userLabel="Find Location Button">
+                                <rect key="frame" x="16" y="594" width="343" height="44"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="btT-3a-t7U"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="FINISH">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="FinishButton:" destination="BnS-Ac-qpj" eventType="touchUpInside" id="8eF-pA-uQ4"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="mjD-Wu-eCo" firstAttribute="top" secondItem="5Hq-cM-Wci" secondAttribute="bottom" id="BZo-7o-xbz"/>
+                            <constraint firstItem="5Hq-cM-Wci" firstAttribute="top" secondItem="Yzk-fS-znB" secondAttribute="top" id="Dd4-yB-oaL"/>
+                            <constraint firstItem="CME-T7-jsq" firstAttribute="bottom" secondItem="lwu-8U-eeI" secondAttribute="bottom" constant="29" id="Ugw-Fg-oSs"/>
+                            <constraint firstItem="lwu-8U-eeI" firstAttribute="centerX" secondItem="mjD-Wu-eCo" secondAttribute="centerX" id="Uu6-dK-yFe"/>
+                            <constraint firstItem="lwu-8U-eeI" firstAttribute="leading" secondItem="Yzk-fS-znB" secondAttribute="leadingMargin" id="b5U-Fu-Zvo"/>
+                            <constraint firstItem="mjD-Wu-eCo" firstAttribute="trailing" secondItem="CME-T7-jsq" secondAttribute="trailing" id="dVh-ax-h2j"/>
+                            <constraint firstItem="5Hq-cM-Wci" firstAttribute="leading" secondItem="mjD-Wu-eCo" secondAttribute="leading" id="jbG-Gy-ywU"/>
+                            <constraint firstItem="mjD-Wu-eCo" firstAttribute="bottom" secondItem="CME-T7-jsq" secondAttribute="bottom" id="k7o-2o-Xc9"/>
+                            <constraint firstItem="mjD-Wu-eCo" firstAttribute="leading" secondItem="CME-T7-jsq" secondAttribute="leading" id="lZv-De-Qjc"/>
+                            <constraint firstItem="5Hq-cM-Wci" firstAttribute="trailing" secondItem="mjD-Wu-eCo" secondAttribute="trailing" id="rot-Ye-5e0"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="CME-T7-jsq"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KwJ-nF-XlQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5173.6000000000004" y="-328.78560719640183"/>
+        </scene>
     </scenes>
     <resources>
         <image name="AddPin" width="24" height="24"/>
@@ -384,6 +449,6 @@
         <image name="WorldIcon" width="52" height="67"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="bTt-Zv-wWa"/>
+        <segue reference="XNG-yI-h6f"/>
     </inferredMetricsTieBreakers>
 </document>

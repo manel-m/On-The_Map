@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		99093C3A21182A8500070177 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99093C3921182A8500070177 /* LocationManager.swift */; };
+		99093C3C2119068600070177 /* ShowLocationMapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99093C3B2119068600070177 /* ShowLocationMapController.swift */; };
 		9974DCB32102F9030060BE5E /* MapTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9974DCB22102F9030060BE5E /* MapTabViewController.swift */; };
 		9974DCB52102F99E0060BE5E /* TableTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9974DCB42102F99E0060BE5E /* TableTabViewController.swift */; };
 		99BD33D821014FD600C6F9B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BD33D721014FD600C6F9B6 /* AppDelegate.swift */; };
@@ -18,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		99093C3921182A8500070177 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		99093C3B2119068600070177 /* ShowLocationMapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowLocationMapController.swift; sourceTree = "<group>"; };
 		9974DCB22102F9030060BE5E /* MapTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTabViewController.swift; sourceTree = "<group>"; };
 		9974DCB42102F99E0060BE5E /* TableTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableTabViewController.swift; sourceTree = "<group>"; };
 		99BD33D421014FD600C6F9B6 /* On The Map.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "On The Map.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -65,6 +69,8 @@
 				9974DCB42102F99E0060BE5E /* TableTabViewController.swift */,
 				9974DCB22102F9030060BE5E /* MapTabViewController.swift */,
 				99DCA80E21083DC00022D30D /* InformationPostingViewController.swift */,
+				99093C3B2119068600070177 /* ShowLocationMapController.swift */,
+				99093C3921182A8500070177 /* LocationManager.swift */,
 				99BD33DB21014FD600C6F9B6 /* Main.storyboard */,
 				99BD33DE21014FD600C6F9B6 /* Assets.xcassets */,
 				99BD33E021014FD600C6F9B6 /* LaunchScreen.storyboard */,
@@ -147,9 +153,11 @@
 			files = (
 				99BD33DA21014FD600C6F9B6 /* LoginViewController.swift in Sources */,
 				99DCA80F21083DC00022D30D /* InformationPostingViewController.swift in Sources */,
+				99093C3A21182A8500070177 /* LocationManager.swift in Sources */,
 				9974DCB52102F99E0060BE5E /* TableTabViewController.swift in Sources */,
 				9974DCB32102F9030060BE5E /* MapTabViewController.swift in Sources */,
 				99BD33D821014FD600C6F9B6 /* AppDelegate.swift in Sources */,
+				99093C3C2119068600070177 /* ShowLocationMapController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
