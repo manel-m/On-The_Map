@@ -298,7 +298,7 @@
                                             <constraint firstAttribute="height" constant="100" id="yYg-VN-dTO"/>
                                         </constraints>
                                     </imageView>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Location" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="86H-Ja-gPW" userLabel="Location Text Field">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Enter a Location" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="86H-Ja-gPW" userLabel="Location Text Field">
                                         <rect key="frame" x="0.0" y="110" width="343" height="32"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
@@ -308,13 +308,13 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" textContentType="location"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Url" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XuT-ta-Njm" userLabel="URL Text Field">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Enter a Website" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XuT-ta-Njm" userLabel="URL Text Field">
                                         <rect key="frame" x="0.0" y="152" width="343" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="32" id="Rih-fe-Yq9"/>
                                         </constraints>
                                         <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SD0-TZ-q5l" userLabel="Find Location Button">
@@ -406,15 +406,6 @@
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Hq-cM-Wci">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                                <items>
-                                    <navigationItem title="Add Location" id="HuG-3x-nOB">
-                                        <barButtonItem key="leftBarButtonItem" title="Add Location " id="02U-si-jKr">
-                                            <connections>
-                                                <action selector="AddLocation:" destination="BnS-Ac-qpj" id="XC2-PG-Fbv"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
                             </navigationBar>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="mjD-Wu-eCo">
                                 <rect key="frame" x="0.0" y="44" width="375" height="623"/>
@@ -436,6 +427,19 @@
                                     <action selector="FinishButton:" destination="BnS-Ac-qpj" eventType="touchUpInside" id="8eF-pA-uQ4"/>
                                 </connections>
                             </button>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LZV-2t-OcY">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Add Location" id="dnU-Er-e4V">
+                                        <barButtonItem key="leftBarButtonItem" title="Add Location" id="uuF-it-ZBM">
+                                            <connections>
+                                                <action selector="AddLocation:" destination="BnS-Ac-qpj" id="hn3-iQ-cGo"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -454,6 +458,7 @@
                     </view>
                     <connections>
                         <outlet property="mapView" destination="mjD-Wu-eCo" id="cJF-jM-drn"/>
+                        <outlet property="navBar" destination="dnU-Er-e4V" id="wDi-PC-rbc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KwJ-nF-XlQ" userLabel="First Responder" sceneMemberID="firstResponder"/>

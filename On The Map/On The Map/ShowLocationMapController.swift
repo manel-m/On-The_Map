@@ -14,6 +14,7 @@ class ShowLocationMapController: UIViewController, MKMapViewDelegate {
     
 
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var navBar: UINavigationItem!
     var location:CLLocation?
     
     override func viewDidLoad() {

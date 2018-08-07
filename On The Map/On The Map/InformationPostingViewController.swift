@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 import CoreLocation
-class InformationPostingViewController: UIViewController {
+class InformationPostingViewController: UIViewController, UITextFieldDelegate {
     
     
     @IBOutlet weak var WorldIconImageView: UIImageView!
@@ -27,30 +27,52 @@ class InformationPostingViewController: UIViewController {
         alert.addAction(action)
         self.present(alert, animated: true, completion: nil)
     }
+    //UITextFieldDelegate
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField.text == "Enter a Location" || textField.text == "Enter a Website" {
+            textField.text = ""
+        }
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        debugTextLabel.text = ""
+        LocationTextField.delegate = self
+        UrlTextField.delegate = self
+    }
     
     
     @IBAction func FindLocation(_ sender: Any) {
-
-        LocationManager.sharedInstance.getReverseGeoCodedLocation(address: LocationTextField.text!) {
+        let location = LocationTextField.text!
+        let Url = UrlTextField.text!
+        if location.isEmpty || Url.isEmpty {
+            debugTextLabel.text = "Location or Website Empty."
+        } else {
+            LocationManager.sharedInstance.getReverseGeoCodedLocation(address: LocationTextField.text!) {
             (location:CLLocation?, placemark:CLPlacemark?, error:NSError?) in
                 if error != nil {
                     self.alertMessage(message: (error?.localizedDescription)!, buttonText: "OK", completionHandler: nil)
+                    self.debugTextLabel.text = "Location Not Found"
                     return
                 }
                 guard let _ = location else {
                     return
                 }
             
-//                print ((location?.coordinate.latitude)!)
-//                print ((location?.coordinate.longitude)!)
+ //                print ((location?.coordinate.latitude)!)
+ //                print ((location?.coordinate.longitude)!)
                 let mapVC = self.storyboard?.instantiateViewController(withIdentifier: "ShowLocationMapController") as! ShowLocationMapController
                 mapVC.location = location
                 self.navigationController?.pushViewController(mapVC, animated: true)
-        }
+                    }
+                }
     }
     
     @IBAction func Cancel(_ sender: Any) {
         dismiss(animated: true, completion: nil)
-    }
+        }
     
 }
