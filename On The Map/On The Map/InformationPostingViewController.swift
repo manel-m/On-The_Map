@@ -30,20 +30,23 @@ class InformationPostingViewController: UIViewController {
     
     
     @IBAction func FindLocation(_ sender: Any) {
-        LocationManager.sharedInstance.getReverseGeoCodedLocation(address: LocationTextField.text!) {
-            (location:CLLocation?, placemark:CLPlacemark?, error:NSError?) in
-                if error != nil {
-                    self.alertMessage(message: (error?.localizedDescription)!, buttonText: "OK", completionHandler: nil)
-                    return
-                }
-                guard let _ = location else {
-                    return
-                }
-            
-                print ((location?.coordinate.latitude)!)
-                print ((location?.coordinate.longitude)!)
+        let mapVC = self.storyboard?.instantiateViewController(withIdentifier: "ShowLocationMapController") as! ShowLocationMapController
+        //mapVC.location = location
+        self.navigationController?.pushViewController(mapVC, animated: true)
+//        LocationManager.sharedInstance.getReverseGeoCodedLocation(address: LocationTextField.text!) {
+//            (location:CLLocation?, placemark:CLPlacemark?, error:NSError?) in
+//                if error != nil {
+//                    self.alertMessage(message: (error?.localizedDescription)!, buttonText: "OK", completionHandler: nil)
+//                    return
+//                }
+//                guard let _ = location else {
+//                    return
+//                }
+//            
+//                print ((location?.coordinate.latitude)!)
+//                print ((location?.coordinate.longitude)!)
         }
-    }
+    
     @IBAction func Cancel(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
