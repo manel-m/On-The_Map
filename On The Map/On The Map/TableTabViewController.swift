@@ -51,8 +51,10 @@ class TableTabViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let location = locations[(indexPath as NSIndexPath).row]
         let app = UIApplication.shared
-        app.openURL(URL(string: location["mediaURL"] as! String)!)
 
+        if let url = URL(string: location["mediaURL"] as! String) {
+            app.openURL(url)
+        }
     }
 
     

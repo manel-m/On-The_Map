@@ -65,6 +65,7 @@ class InformationPostingViewController: UIViewController, UITextFieldDelegate {
  //                print ((location?.coordinate.longitude)!)
                 let mapVC = self.storyboard?.instantiateViewController(withIdentifier: "ShowLocationMapController") as! ShowLocationMapController
                 mapVC.location = location
+                mapVC.mapString = self.UrlTextField.text!
                 self.navigationController?.pushViewController(mapVC, animated: true)
                     }
                 }
