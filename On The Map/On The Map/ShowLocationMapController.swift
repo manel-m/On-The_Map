@@ -15,13 +15,15 @@ class ShowLocationMapController: UIViewController, MKMapViewDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var navBar: UINavigationItem!
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var location:CLLocation?
 
     var mapString : String = ""
+    var mediaURL: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(mapString)
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -50,14 +52,42 @@ class ShowLocationMapController: UIViewController, MKMapViewDelegate {
         request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
         request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpBody = "{\"uniqueKey\": \"1234\", \"firstName\": \"manel\", \"lastName\": \"mat\",\"mapString\": \"Mountain View, CA\", \"mediaURL\": \"https://udacity.com\",\"latitude\": 37.386052, \"longitude\": -122.083851}".data(using: .utf8)
-       // request.httpBody = ("{\"udacity\": {\"username\": \""+username+"\", \"password\": \""+password+"\"}}").data(using: .utf8)
+        //                print ((location?.coordinate.latitude)!)
+        //                print ((location?.coordinate.longitude)!)
+        let firstName = self.appDelegate.firstName
+        print(firstName)
+        let latitude = location?.coordinate.latitude
+        print(latitude!)
+        let longitude = location?.coordinate.longitude
+        print(longitude!)
+        print(mapString)
+        print(mediaURL)
+        
+        let body = "{\"uniqueKey\": \"1244\", \"firstName\": \"\(firstName)\", \"lastName\": \"\",\"mapString\": \"\(mapString)\", \"mediaURL\": \"\(mediaURL)\",\"latitude\":\(latitude), \"longitude\": \(longitude)}"
+        request.httpBody = body.data(using: .utf8)
         let session = URLSession.shared
         let task = session.dataTask(with: request) { data, response, error in
-            if error != nil { // Handle error…
+            // if an error occurs, print it and re-enable the UI
+            func displayError(_ error: String) {
+                print(error)
+            }
+            
+            /* GUARD: Was there an error? */
+            guard (error == nil) else {
+                displayError("There was an error posting new student location: \(error!)")
                 return
             }
-            print(String(data: data!, encoding: .utf8)!)
+            /* GUARD: Did we get a successful 2XX response? */
+            guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
+                displayError("Your request returned a status code other than 2xx!: ")
+                return
+            }
+            guard let data = data else {
+                displayError ("No posting new student location data was returned!")
+                return
+            }
+            
+            print(String(data: data, encoding: .utf8)!)
         }
         task.resume()
     }

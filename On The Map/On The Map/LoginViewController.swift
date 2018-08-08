@@ -18,6 +18,8 @@ class LoginViewController: UIViewController , UITextFieldDelegate{
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var debugTextLabel: UILabel!
     
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    
     
     
     override func viewDidLoad() {
@@ -59,8 +61,12 @@ class LoginViewController: UIViewController , UITextFieldDelegate{
         
         let username = usernameTextField.text!
         let password = passwordTextField.text!
+        print(appDelegate)
+        print(appDelegate.firstName)
+        print(username)
+        self.appDelegate.firstName = username////////////////////////////////////////
         if username.isEmpty || password.isEmpty {
-            debugTextLabel.text = "Email or Password Empty."
+            debugTextLabel.text = "Empty Email or Password."
         } else {
             UdacityAuthentication(username, password)
             }
@@ -80,7 +86,7 @@ class LoginViewController: UIViewController , UITextFieldDelegate{
             func displayError(_ error: String) {
                 print(error)
                 self.performUIUpdatesOnMain {
-                    self.debugTextLabel.text = "Login Failed."
+                    self.debugTextLabel.text = "Invalid Email or Password."
                 }
             }
             /* GUARD: Was there an error? */

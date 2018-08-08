@@ -13,6 +13,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var locations : [[String : Any]] = []
+    var firstName : String = ""/////////////////////////////////////
+    
     
     func downloadLocations(downloadHandler: @escaping (_ result: [[String:Any]]?, _ error: String?) -> Void) {
         var request = URLRequest(url: URL(string: "https://parse.udacity.com/parse/classes/StudentLocation?limit=100&order=-updatedAt")!)

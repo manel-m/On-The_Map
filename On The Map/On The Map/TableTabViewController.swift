@@ -25,7 +25,7 @@ class TableTabViewController: UITableViewController {
     // Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-       // locations = hardCodedLocationData()
+       
 
     }
     

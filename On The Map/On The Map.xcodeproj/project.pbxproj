@@ -17,6 +17,7 @@
 		99BD33DF21014FD600C6F9B6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99BD33DE21014FD600C6F9B6 /* Assets.xcassets */; };
 		99BD33E221014FD600C6F9B6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 99BD33E021014FD600C6F9B6 /* LaunchScreen.storyboard */; };
 		99DCA80F21083DC00022D30D /* InformationPostingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99DCA80E21083DC00022D30D /* InformationPostingViewController.swift */; };
+		99E87E83211ABBB5001F5AF7 /* StudentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99E87E82211ABBB5001F5AF7 /* StudentModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		99BD33E121014FD600C6F9B6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		99BD33E321014FD600C6F9B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		99DCA80E21083DC00022D30D /* InformationPostingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationPostingViewController.swift; sourceTree = "<group>"; };
+		99E87E82211ABBB5001F5AF7 /* StudentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +77,7 @@
 				99BD33DE21014FD600C6F9B6 /* Assets.xcassets */,
 				99BD33E021014FD600C6F9B6 /* LaunchScreen.storyboard */,
 				99BD33E321014FD600C6F9B6 /* Info.plist */,
+				99E87E82211ABBB5001F5AF7 /* StudentModel.swift */,
 			);
 			path = "On The Map";
 			sourceTree = "<group>";
@@ -156,6 +159,7 @@
 				99093C3A21182A8500070177 /* LocationManager.swift in Sources */,
 				9974DCB52102F99E0060BE5E /* TableTabViewController.swift in Sources */,
 				9974DCB32102F9030060BE5E /* MapTabViewController.swift in Sources */,
+				99E87E83211ABBB5001F5AF7 /* StudentModel.swift in Sources */,
 				99BD33D821014FD600C6F9B6 /* AppDelegate.swift in Sources */,
 				99093C3C2119068600070177 /* ShowLocationMapController.swift in Sources */,
 			);

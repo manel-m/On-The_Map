@@ -60,7 +60,6 @@
                                         </state>
                                         <connections>
                                             <action selector="loginPressed:" destination="ZZA-Vz-4jZ" eventType="touchUpInside" id="QMI-zD-Frr"/>
-                                            <segue destination="E05-H5-NZ9" kind="show" id="JRI-He-klf"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="248" text="Don't have an account? sign Up" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KU2-dB-atr">
@@ -196,7 +195,7 @@
         <scene sceneID="MgM-Wg-nCs">
             <objects>
                 <navigationController id="mHi-eY-jdz" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="List" id="VIp-jG-h4o" userLabel="List"/>
+                    <tabBarItem key="tabBarItem" title="List" image="ListView" id="VIp-jG-h4o" userLabel="List"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="877-TP-KQn">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -213,7 +212,7 @@
         <scene sceneID="Rae-2W-asd">
             <objects>
                 <navigationController id="aZk-hF-yv8" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Map" id="zTZ-jS-hLq" userLabel="Map"/>
+                    <tabBarItem key="tabBarItem" title="Map" image="mapView" id="zTZ-jS-hLq" userLabel="Map"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Hti-Lt-aIC">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -450,10 +449,12 @@
     </scenes>
     <resources>
         <image name="AddPin" width="24" height="24"/>
+        <image name="ListView" width="75" height="50"/>
         <image name="PinIcon" width="24" height="24"/>
         <image name="RefreshIcon" width="24" height="24"/>
         <image name="UdacityImage" width="62" height="62"/>
         <image name="WorldIcon" width="52" height="67"/>
+        <image name="mapView" width="75" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="gRn-1T-RUU"/>
