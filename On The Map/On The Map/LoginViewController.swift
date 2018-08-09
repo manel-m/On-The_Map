@@ -52,7 +52,7 @@ class LoginViewController: UIViewController , UITextFieldDelegate{
     private func completeLogin() {
         performUIUpdatesOnMain {
             self.debugTextLabel.text = ""
-            let controller = self.storyboard!.instantiateViewController(withIdentifier: "UdacityTabBarController") as! UITabBarController
+            let controller = self.storyboard!.instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
             self.present(controller, animated: true, completion: nil)
         }
     }

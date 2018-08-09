@@ -47,6 +47,12 @@ class ShowLocationMapController: UIViewController, MKMapViewDelegate {
     }
     
     @IBAction func FinishButton(_ sender: Any) {
+        postNewStudentLocation()
+        let tabController = self.storyboard?.instantiateViewController(withIdentifier: "TabBarController")
+        self.present(tabController!, animated: true)
+        
+    }
+    func postNewStudentLocation (){
         var request = URLRequest(url: URL(string: "https://parse.udacity.com/parse/classes/StudentLocation")!)
         request.httpMethod = "POST"
         request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
@@ -54,7 +60,7 @@ class ShowLocationMapController: UIViewController, MKMapViewDelegate {
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         //                print ((location?.coordinate.latitude)!)
         //                print ((location?.coordinate.longitude)!)
-        let firstName = self.appDelegate.firstName
+        let firstName = "Manel"
         print(firstName)
         let latitude = location?.coordinate.latitude
         print(latitude!)

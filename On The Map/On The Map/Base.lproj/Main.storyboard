@@ -106,10 +106,10 @@
             </objects>
             <point key="canvasLocation" x="593" y="-219"/>
         </scene>
-        <!--Udacity Tab Bar Controller-->
+        <!--Tab Bar Controller-->
         <scene sceneID="ZTp-f0-Vox">
             <objects>
-                <tabBarController storyboardIdentifier="UdacityTabBarController" id="E05-H5-NZ9" userLabel="Udacity Tab Bar Controller" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarController" id="E05-H5-NZ9" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="TIq-FX-tqT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -457,6 +457,6 @@
         <image name="mapView" width="75" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="gRn-1T-RUU"/>
+        <segue reference="Mu6-Ab-lV1"/>
     </inferredMetricsTieBreakers>
 </document>
