@@ -63,7 +63,8 @@ class ShowLocationMapController: UIViewController, MKMapViewDelegate {
         print(mapString)
         print(mediaURL)
         
-        let body = "{\"uniqueKey\": \"1244\", \"firstName\": \"\(firstName)\", \"lastName\": \"\",\"mapString\": \"\(mapString)\", \"mediaURL\": \"\(mediaURL)\",\"latitude\":\(latitude), \"longitude\": \(longitude)}"
+        let body = "{\"uniqueKey\": \"1244\", \"firstName\": \"\(firstName)\", \"lastName\": \"\",\"mapString\": \"\(mapString)\", \"mediaURL\": \"\(mediaURL)\",\"latitude\":\(latitude!), \"longitude\": \(longitude!)}"
+        print(body)
         request.httpBody = body.data(using: .utf8)
         let session = URLSession.shared
         let task = session.dataTask(with: request) { data, response, error in
@@ -87,7 +88,7 @@ class ShowLocationMapController: UIViewController, MKMapViewDelegate {
                 return
             }
             
-            print(String(data: data, encoding: .utf8)!)
+            //print(String(data: data, encoding: .utf8)!)
         }
         task.resume()
     }
