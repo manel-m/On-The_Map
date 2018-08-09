@@ -20,8 +20,6 @@ class LoginViewController: UIViewController , UITextFieldDelegate{
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -35,8 +33,6 @@ class LoginViewController: UIViewController , UITextFieldDelegate{
         debugTextLabel.text = ""
         usernameTextField.delegate = self
         passwordTextField.delegate = self
-        
-        
     }
     
     //UITextFieldDelegate
@@ -49,6 +45,7 @@ class LoginViewController: UIViewController , UITextFieldDelegate{
             textField.text = ""
         }
     }
+    // Login
     private func completeLogin() {
         performUIUpdatesOnMain {
             self.debugTextLabel.text = ""
@@ -61,18 +58,14 @@ class LoginViewController: UIViewController , UITextFieldDelegate{
         
         let username = usernameTextField.text!
         let password = passwordTextField.text!
-        print(appDelegate)
-        print(appDelegate.firstName)
-        print(username)
-        self.appDelegate.firstName = username////////////////////////////////////////
+        self.appDelegate.firstName = username
         if username.isEmpty || password.isEmpty {
             debugTextLabel.text = "Empty Email or Password."
         } else {
             UdacityAuthentication(username, password)
             }
-     
         }
-   
+   // Authentication
     func UdacityAuthentication (_ username: String, _ password: String) {
         var request = URLRequest(url: URL(string: "https://www.udacity.com/api/session")!)
         request.httpMethod = "POST"
@@ -101,11 +94,11 @@ class LoginViewController: UIViewController , UITextFieldDelegate{
                 return
             }
             
-            /* GUARD: Was there any data returned? */
-//            guard let data = data else {
-//                displayError("No data was returned by the request!")
-//                return
-//            }
+             //GUARD: Was there any data returned?
+            guard let data = data else {
+                displayError("No data was returned by the request!")
+                return
+            }
 //            let range = Range(5..<data.count)
 //            let newData = data.subdata(in: range) /* subset response data! */
 //            print(String(data: newData, encoding: .utf8)!)

@@ -11,27 +11,29 @@ import UIKit
 import MapKit
 class MapTabViewController : UIViewController, MKMapViewDelegate {
     
+    // Properties
     @IBOutlet weak var mapView: MKMapView!
     var locations : [[String : Any]] {
         let object = UIApplication.shared.delegate
         let appDelegate = object as! AppDelegate
         return appDelegate.locations
     }
-    
+    //  Life Cycle
     override func viewDidAppear(_ animated: Bool) {
         print("MAP APPEARED")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         let object = UIApplication.shared.delegate
         let appDelegate = object as! AppDelegate
         createAnnotations(locations: appDelegate.locations)
     }
-     func createAnnotations(locations: [[String: Any]]) {
+    
+    func createAnnotations(locations: [[String: Any]]) {
         var annotations = [MKPointAnnotation]()
         for dictionary in locations {
             
@@ -84,8 +86,6 @@ class MapTabViewController : UIViewController, MKMapViewDelegate {
                 if let url = URL(string: toOpen) {
                     app.openURL(url)
                 }
-                
-
             }
         }
     }
@@ -105,6 +105,7 @@ class MapTabViewController : UIViewController, MKMapViewDelegate {
         let object = UIApplication.shared.delegate
         let appDelegate = object as! AppDelegate
         appDelegate.refreshLocations() { (result, error) in
+            print("DATA REFRESHED")
             self.performUIUpdatesOnMain {
                 let old = self.mapView.annotations
                 self.mapView.removeAnnotations(old)

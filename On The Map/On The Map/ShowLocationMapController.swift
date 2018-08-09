@@ -12,20 +12,17 @@ import MapKit
 
 class ShowLocationMapController: UIViewController, MKMapViewDelegate {
     
-
+    // Properties
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var navBar: UINavigationItem!
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var location:CLLocation?
-
     var mapString : String = ""
     var mediaURL: String = ""
-    
+    //  Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         //Setting Region
@@ -50,17 +47,16 @@ class ShowLocationMapController: UIViewController, MKMapViewDelegate {
         postNewStudentLocation()
         let tabController = self.storyboard?.instantiateViewController(withIdentifier: "TabBarController")
         self.present(tabController!, animated: true)
-        
     }
+    
     func postNewStudentLocation (){
         var request = URLRequest(url: URL(string: "https://parse.udacity.com/parse/classes/StudentLocation")!)
         request.httpMethod = "POST"
         request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
         request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        //                print ((location?.coordinate.latitude)!)
-        //                print ((location?.coordinate.longitude)!)
-        let firstName = "Manel"
+    
+        let firstName = self.appDelegate.firstName
         print(firstName)
         let latitude = location?.coordinate.latitude
         print(latitude!)
@@ -93,7 +89,6 @@ class ShowLocationMapController: UIViewController, MKMapViewDelegate {
                 displayError ("No posting new student location data was returned!")
                 return
             }
-            
             //print(String(data: data, encoding: .utf8)!)
         }
         task.resume()

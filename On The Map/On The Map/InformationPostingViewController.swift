@@ -11,7 +11,7 @@ import UIKit
 import CoreLocation
 class InformationPostingViewController: UIViewController, UITextFieldDelegate {
     
-    
+    // Properties
     @IBOutlet weak var WorldIconImageView: UIImageView!
     @IBOutlet weak var LocationTextField: UITextField!
     @IBOutlet weak var UrlTextField: UITextField!
@@ -60,9 +60,6 @@ class InformationPostingViewController: UIViewController, UITextFieldDelegate {
                 guard let _ = location else {
                     return
                 }
-            
- //                print ((location?.coordinate.latitude)!)
- //                print ((location?.coordinate.longitude)!)
                 let mapVC = self.storyboard?.instantiateViewController(withIdentifier: "ShowLocationMapController") as! ShowLocationMapController
                 mapVC.location = location
                 mapVC.mapString = self.LocationTextField.text!
