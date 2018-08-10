@@ -18,15 +18,6 @@ class InformationPostingViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var FindLocationButton: UIButton!
     @IBOutlet weak var debugTextLabel: UILabel!
     
-    
-    func alertMessage(message:String,buttonText:String,completionHandler:(()->())?) {
-        let alert = UIAlertController(title: "Location", message: message, preferredStyle: .alert)
-        let action = UIAlertAction(title: buttonText, style: .default) { (action:UIAlertAction) in
-            completionHandler?()
-        }
-        alert.addAction(action)
-        self.present(alert, animated: true, completion: nil)
-    }
     //UITextFieldDelegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -61,9 +52,14 @@ class InformationPostingViewController: UIViewController, UITextFieldDelegate {
                     return
                 }
                 let mapVC = self.storyboard?.instantiateViewController(withIdentifier: "ShowLocationMapController") as! ShowLocationMapController
-                mapVC.location = location
-                mapVC.mapString = self.LocationTextField.text!
-                mapVC.mediaURL = self.UrlTextField.text!
+               // mapVC.location = location
+//                mapVC.mapString = self.LocationTextField.text!
+//                mapVC.mediaURL = self.UrlTextField.text!
+                StudentInformation.MapString = self.LocationTextField.text!
+                StudentInformation.MediaURL = self.UrlTextField.text!
+                StudentInformation.Latitude = (location?.coordinate.latitude)!
+                StudentInformation.Longitude = (location?.coordinate.longitude)!
+                
                 self.navigationController?.pushViewController(mapVC, animated: true)
                     }
                 }
