@@ -55,60 +55,22 @@ class LoginViewController: UIViewController , UITextFieldDelegate{
     }
 
     @IBAction func loginPressed(_ sender: Any) {
-        
         let username = usernameTextField.text!
         let password = passwordTextField.text!
-        self.appDelegate.firstName = username
         if username.isEmpty || password.isEmpty {
             debugTextLabel.text = "Empty Email or Password."
         } else {
-            UdacityAuthentication(username, password)
-            }
+            UdacityConstants.ParameterValues.Username = username
+            UdacityConstants.ParameterValues.Password = password
         }
-   // Authentication
-    func UdacityAuthentication (_ username: String, _ password: String) {
-        var request = URLRequest(url: URL(string: "https://www.udacity.com/api/session")!)
-        request.httpMethod = "POST"
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpBody = ("{\"udacity\": {\"username\": \""+username+"\", \"password\": \""+password+"\"}}").data(using: .utf8)
-        let session = URLSession.shared
-
-        let task = session.dataTask(with: request) { data, response, error in
-            // if an error occurs, print it and re-enable the UI
-            func displayError(_ error: String) {
-                print(error)
+        UdacityAuthentication { (success, error) in
+            if success {
+                self.completeLogin()
+            } else {
                 performUIUpdatesOnMain {
                     self.debugTextLabel.text = "Invalid Email or Password."
                 }
             }
-            /* GUARD: Was there an error? */
-            guard (error == nil) else {
-                displayError("There was an error with your request: \(error!)")
-                return
-            }
-            
-            /* GUARD: Did we get a successful 2XX response? */
-            guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
-                displayError("Your request returned a status code other than 2xx!: ")
-                return
-            }
-            
-             //GUARD: Was there any data returned?
-            guard let data = data else {
-                displayError("No data was returned by the request!")
-                return
-            }
-//            let range = Range(5..<data.count)
-//            let newData = data.subdata(in: range) /* subset response data! */
-//            print(String(data: newData, encoding: .utf8)!)
-            
-            self.completeLogin()
         }
-        task.resume()
-        
-    }
-
-
-
+        }
 }
