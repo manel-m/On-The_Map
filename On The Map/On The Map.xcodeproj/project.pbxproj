@@ -11,7 +11,7 @@
 		99093C3C2119068600070177 /* ShowLocationMapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99093C3B2119068600070177 /* ShowLocationMapController.swift */; };
 		995872B8211D607900BE1E20 /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995872B7211D607900BE1E20 /* GCDBlackBox.swift */; };
 		995872BB211D66E500BE1E20 /* StudentInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995872BA211D66E500BE1E20 /* StudentInformation.swift */; };
-		995872BD211D67B400BE1E20 /* Networkingfunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995872BC211D67B400BE1E20 /* Networkingfunctions.swift */; };
+		995872BD211D67B400BE1E20 /* NetworkingFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995872BC211D67B400BE1E20 /* NetworkingFunctions.swift */; };
 		995872BF211D6E9000BE1E20 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995872BE211D6E9000BE1E20 /* Constants.swift */; };
 		9974DCB32102F9030060BE5E /* MapTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9974DCB22102F9030060BE5E /* MapTabViewController.swift */; };
 		9974DCB52102F99E0060BE5E /* TableTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9974DCB42102F99E0060BE5E /* TableTabViewController.swift */; };
@@ -28,7 +28,7 @@
 		99093C3B2119068600070177 /* ShowLocationMapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowLocationMapController.swift; sourceTree = "<group>"; };
 		995872B7211D607900BE1E20 /* GCDBlackBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDBlackBox.swift; sourceTree = "<group>"; };
 		995872BA211D66E500BE1E20 /* StudentInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentInformation.swift; sourceTree = "<group>"; };
-		995872BC211D67B400BE1E20 /* Networkingfunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networkingfunctions.swift; sourceTree = "<group>"; };
+		995872BC211D67B400BE1E20 /* NetworkingFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingFunctions.swift; sourceTree = "<group>"; };
 		995872BE211D6E9000BE1E20 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		9974DCB22102F9030060BE5E /* MapTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTabViewController.swift; sourceTree = "<group>"; };
 		9974DCB42102F99E0060BE5E /* TableTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableTabViewController.swift; sourceTree = "<group>"; };
@@ -88,7 +88,7 @@
 				99BD33D721014FD600C6F9B6 /* AppDelegate.swift */,
 				995872B7211D607900BE1E20 /* GCDBlackBox.swift */,
 				995872BA211D66E500BE1E20 /* StudentInformation.swift */,
-				995872BC211D67B400BE1E20 /* Networkingfunctions.swift */,
+				995872BC211D67B400BE1E20 /* NetworkingFunctions.swift */,
 				995872BE211D6E9000BE1E20 /* Constants.swift */,
 				99093C3921182A8500070177 /* LocationManager.swift */,
 				99BD33DB21014FD600C6F9B6 /* Main.storyboard */,
@@ -177,7 +177,7 @@
 				99DCA80F21083DC00022D30D /* InformationPostingViewController.swift in Sources */,
 				99093C3A21182A8500070177 /* LocationManager.swift in Sources */,
 				9974DCB52102F99E0060BE5E /* TableTabViewController.swift in Sources */,
-				995872BD211D67B400BE1E20 /* Networkingfunctions.swift in Sources */,
+				995872BD211D67B400BE1E20 /* NetworkingFunctions.swift in Sources */,
 				9974DCB32102F9030060BE5E /* MapTabViewController.swift in Sources */,
 				995872BB211D66E500BE1E20 /* StudentInformation.swift in Sources */,
 				99BD33D821014FD600C6F9B6 /* AppDelegate.swift in Sources */,
