@@ -14,7 +14,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     // shared Properties
     var locations : [[String : Any]] = []
-    var firstName : String = ""
     
     // shared function (TableTabViewController and MapTabViewController)
     // GETting Student Locations
@@ -55,6 +54,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 downloadHandler(nil, "Cannot find key 'results' in \(parsedResult)")
                 return
             }
+            
+//            let student:StudentInformation = StudentInformation(data: StudentLocations[0])
+//            print(student.FirstName)
+            
             downloadHandler(StudentLocations, nil)
         }
         task.resume()

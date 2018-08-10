@@ -15,10 +15,8 @@ class ShowLocationMapController: UIViewController, MKMapViewDelegate {
     // Properties
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var navBar: UINavigationItem!
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//    var location:CLLocation?
-//    var mapString : String = ""
-//    var mediaURL: String = ""
+    
+
     //  Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +48,7 @@ class ShowLocationMapController: UIViewController, MKMapViewDelegate {
                 self.present(tabController!, animated: true)
             } else{
                 performUIUpdatesOnMain {
-                    print(error!)
+                    print(error!)// handle error
                 }
             }
         }

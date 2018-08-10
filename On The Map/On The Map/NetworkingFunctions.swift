@@ -95,6 +95,46 @@ func DeleteSession (){
     task.resume()
     
 }
+func GetStudentLocations(completionHandler: @escaping (_ success: Bool, _ error: String?) -> Void) {
+    var request = URLRequest(url: URL(string: "https://parse.udacity.com/parse/classes/StudentLocation?limit=100&order=-updatedAt")!)
+    request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
+    request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
+    //Make the request
+    let session = URLSession.shared
+    let task = session.dataTask(with: request) { data, response, error in
+        // Guard: was there an error?
+        guard (error == nil) else {
+            completionHandler(false, "There was an error with your request: \(error!)")
+            return
+        }
+        // Guard: Is there a succesful HTTP 2XX response?
+        guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
+            completionHandler(false, "Your request returned a status code other than 2xx!")
+            return
+        }
+        // Guard: any data returned?
+        guard let data = data else {
+            completionHandler(false, "No data was returned by the request!")
+            return
+        }
+        //Parse the data
+        let parsedResult: [String:AnyObject]!
+        do {
+            parsedResult = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String:AnyObject]
+        } catch {
+            completionHandler(false, "Could not parse student locations data as JSON")
+            return
+        }
+        //Use the data
+        guard let StudentLocations = parsedResult["results"] as? [[String: AnyObject]] else {
+            completionHandler(false, "Cannot find key 'results' in student locations")
+            return
+        }
+        //init dictionarry
+        completionHandler(true, nil)
+    }
+    task.resume()
+}
 
 func PostNewStudentLocation(completionHandler: @escaping (_ success: Bool, _ error: String?) -> Void) {
     //Build the URL, Configure the request
@@ -104,16 +144,11 @@ func PostNewStudentLocation(completionHandler: @escaping (_ success: Bool, _ err
     request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
     request.addValue("application/json", forHTTPHeaderField: "Content-Type")
     
-    let firstName = UdacityConstants.ParameterValues.Username
-    print(firstName)
+    let firstName = "manel"//UdacityConstants.ParameterValues.Username
     let latitude = StudentInformation.Latitude//location?.coordinate.latitude
-    print(latitude)
     let longitude = StudentInformation.Longitude //location?.coordinate.longitude
-    print(longitude)
     let mapString = StudentInformation.MapString
-    print(mapString)
     let mediaURL = StudentInformation.MediaURL
-    print(mediaURL) /////////////
     let body = "{\"uniqueKey\": \"1244\", \"firstName\": \"\(firstName)\", \"lastName\": \"\",\"mapString\": \"\(mapString)\", \"mediaURL\": \"\(mediaURL)\",\"latitude\":\(latitude), \"longitude\": \(longitude)}"
     request.httpBody = body.data(using: .utf8)
     // Make the request

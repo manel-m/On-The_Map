@@ -48,13 +48,15 @@ class TableTabViewController: UITableViewController {
     }
 
     @IBAction func Refresh(_ sender: Any) {
-            let object = UIApplication.shared.delegate
-            let appDelegate = object as! AppDelegate
-            appDelegate.refreshLocations() { (result, error) in
+        GetStudentLocations { (success, error) in
+            if success {
                 performUIUpdatesOnMain {
                     self.tableView.reloadData()
                 }
+            } else {
+                print(error)// handel error
             }
+        }
     }
     
     @IBAction func LogOut(_ sender: Any) {

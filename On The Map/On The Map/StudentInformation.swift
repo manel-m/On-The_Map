@@ -9,12 +9,21 @@
 import Foundation
 import UIKit
 import MapKit
-struct StudentInformation {
-    static var FirstName = ""
-    static var LastName = ""
-    static var MapString = ""
-    static var MediaURL = ""
-    static var Latitude: Double = 0
-    static var Longitude: Double = 0
+
+class StudentInformation {
+    var FirstName: String?
+    var LastName: String?
+    var MapString : String?
+    var MediaURL : String?
+    var Latitude: Double?
+    var Longitude: Double?
     
+    init(data:[String:AnyObject]) {
+        FirstName = data["firstName"] as? String
+        LastName = data["lastName"] as? String
+        MapString = data["mapString"] as? String
+        MediaURL = data["mediaUrl"] as? String
+        Latitude = data["latitude"] as? Double
+        Longitude = data["longtitude"] as? Double
+    }
 }
