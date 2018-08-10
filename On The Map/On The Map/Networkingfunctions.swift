@@ -55,3 +55,42 @@ func UdacityAuthentication (completionHandler: @escaping (_ success: Bool, _ err
     }
     task.resume()
 }
+
+func DeleteSession (){
+    var request = URLRequest(url: URL(string: "https://www.udacity.com/api/session")!)
+    request.httpMethod = "DELETE"
+    var xsrfCookie: HTTPCookie? = nil
+    let sharedCookieStorage = HTTPCookieStorage.shared
+    for cookie in sharedCookieStorage.cookies! {
+        if cookie.name == "XSRF-TOKEN" { xsrfCookie = cookie }
+    }
+    if let xsrfCookie = xsrfCookie {
+        request.setValue(xsrfCookie.value, forHTTPHeaderField: "X-XSRF-TOKEN")
+    }
+    let session = URLSession.shared
+    let task = session.dataTask(with: request) { data, response, error in
+        // if an error occurs, print it and re-enable the UI
+        func displayError(_ error: String) {
+            print(error)
+        }
+        // Guard: was there an error?
+        guard (error == nil) else {
+            displayError("There was an error with  request")
+            return
+        }
+        // Guard: Is there a succesful HTTP 2XX response?
+        guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
+            displayError("Your request returned a status code other than 2xx!")
+            return
+        }
+        // Guard: any data returned?
+        guard let data = data else {
+            displayError("No data was returned by the request!")
+            return
+        }
+        //   let range = Range(5..<data!.count)
+        //   let newData = data?.subdata(in: range) /* subset response data! */
+    }
+    task.resume()
+    
+}
