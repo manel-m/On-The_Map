@@ -78,7 +78,7 @@ class LoginViewController: UIViewController , UITextFieldDelegate{
             // if an error occurs, print it and re-enable the UI
             func displayError(_ error: String) {
                 print(error)
-                self.performUIUpdatesOnMain {
+                performUIUpdatesOnMain {
                     self.debugTextLabel.text = "Invalid Email or Password."
                 }
             }
@@ -109,11 +109,6 @@ class LoginViewController: UIViewController , UITextFieldDelegate{
         
     }
 
-    func performUIUpdatesOnMain(_ updates: @escaping () -> Void) {
-        DispatchQueue.main.async {
-            updates()
-        }
-    }
 
 
 }

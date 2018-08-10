@@ -89,11 +89,7 @@ class MapTabViewController : UIViewController, MKMapViewDelegate {
             }
         }
     }
-    func performUIUpdatesOnMain(_ updates: @escaping () -> Void) {
-        DispatchQueue.main.async {
-            updates()
-        }
-    }
+    
     private func completeLogOut() {
         performUIUpdatesOnMain {
             let controller = self.storyboard!.instantiateViewController(withIdentifier: "LoginViewController")
@@ -106,7 +102,7 @@ class MapTabViewController : UIViewController, MKMapViewDelegate {
         let appDelegate = object as! AppDelegate
         appDelegate.refreshLocations() { (result, error) in
             print("DATA REFRESHED")
-            self.performUIUpdatesOnMain {
+            performUIUpdatesOnMain {
                 let old = self.mapView.annotations
                 self.mapView.removeAnnotations(old)
                 self.createAnnotations(locations:self.locations)

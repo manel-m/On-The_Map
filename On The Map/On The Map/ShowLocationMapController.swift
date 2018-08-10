@@ -56,7 +56,7 @@ class ShowLocationMapController: UIViewController, MKMapViewDelegate {
         request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
     
-        let firstName = self.appDelegate.firstName
+        let firstName = "manel"//self.appDelegate.firstName
         print(firstName)
         let latitude = location?.coordinate.latitude
         print(latitude!)

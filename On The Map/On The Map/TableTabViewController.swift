@@ -51,15 +51,10 @@ class TableTabViewController: UITableViewController {
             let object = UIApplication.shared.delegate
             let appDelegate = object as! AppDelegate
             appDelegate.refreshLocations() { (result, error) in
-                self.performUIUpdatesOnMain {
+                performUIUpdatesOnMain {
                     self.tableView.reloadData()
                 }
             }
-    }
-    func performUIUpdatesOnMain(_ updates: @escaping () -> Void) {
-        DispatchQueue.main.async {
-            updates()
-        }
     }
     private func completeLogOut() {
         performUIUpdatesOnMain {
