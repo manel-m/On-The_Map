@@ -11,10 +11,10 @@ import UIKit
 class TableTabViewController: UITableViewController {
     
     // Properties
-    var locations : [[String : Any]] {
+    var studentModel : StudentModel {
         let object = UIApplication.shared.delegate
         let appDelegate = object as! AppDelegate
-        return appDelegate.locations
+        return appDelegate.studentModel
     }
     // Life Cycle
     override func viewDidLoad() {
@@ -28,35 +28,44 @@ class TableTabViewController: UITableViewController {
     // UITableViewController
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return locations.count
+        return studentModel.Students.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "Student Cell")!
-        let location = locations[(indexPath as NSIndexPath).row]
-        cell.textLabel!.text = location["firstName"] as? String
-        cell.detailTextLabel!.text = location["mediaURL"] as? String
+        let student = studentModel.Students[(indexPath as NSIndexPath).row]
+        cell.textLabel!.text = student.FirstName
+        cell.detailTextLabel!.text = student.MediaURL
        return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let location = locations[(indexPath as NSIndexPath).row]
+        let student = studentModel.Students[(indexPath as NSIndexPath).row]
         let app = UIApplication.shared
-        if let url = URL(string: location["mediaURL"] as! String) {
+        if let url = URL(string: student.MediaURL!) {
             app.openURL(url)
         }
     }
 
     @IBAction func Refresh(_ sender: Any) {
-        GetStudentLocations { (success, error) in
-            if success {
+        studentModel.LoadStudents { (error) in
+            if error != nil {
+                print(error) // handel error
+            } else{
                 performUIUpdatesOnMain {
                     self.tableView.reloadData()
                 }
-            } else {
-                print(error)// handel error
             }
         }
+//        GetStudentLocations { (success, error) in
+//            if success {
+//                performUIUpdatesOnMain {
+//                    self.tableView.reloadData()
+//                }
+//            } else {
+//                print(error)// handel error
+//            }
+//        }
     }
     
     @IBAction func LogOut(_ sender: Any) {

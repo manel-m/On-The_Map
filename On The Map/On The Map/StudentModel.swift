@@ -7,6 +7,22 @@
 //
 
 import Foundation
+
 class StudentModel {
-    var Students = [[String: AnyObject]]()
+    var Students = [StudentInformation]()
+    
+    func LoadStudents (completionHandler: @escaping (_ error: String?) -> Void) {
+        GetStudents { (results, error) in
+            if (error != nil) {
+                completionHandler(error)
+            } else {
+                self.Students.removeAll()
+                for row in results! {
+                    let student = StudentInformation(data:row)
+                    self.Students.append(student)
+                }
+                completionHandler(nil)
+            }
+        }
+    }
 }

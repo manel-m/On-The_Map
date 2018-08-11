@@ -16,21 +16,23 @@ class ShowLocationMapController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var navBar: UINavigationItem!
     
+    var student:StudentInformation?
 
     //  Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         //Setting Region
-        let center = CLLocationCoordinate2D(latitude: StudentInformation.Latitude, longitude: StudentInformation.Longitude)
+        let center = CLLocationCoordinate2D(latitude: (student?.Latitude)!, longitude: (student?.Longitude)!)
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
         
         self.mapView.setRegion(region, animated: true)
         
         //Adding Pin
-        let pinLocation : CLLocationCoordinate2D = CLLocationCoordinate2DMake(StudentInformation.Latitude, StudentInformation.Longitude)
+        let pinLocation : CLLocationCoordinate2D = CLLocationCoordinate2DMake((student?.Latitude)!, (student?.Longitude)!)
         let objectAnnotation = MKPointAnnotation()
         objectAnnotation.coordinate = pinLocation
         objectAnnotation.title = "My Location"
@@ -42,7 +44,7 @@ class ShowLocationMapController: UIViewController, MKMapViewDelegate {
     }
     
     @IBAction func FinishButton(_ sender: Any) {
-        PostNewStudentLocation{ (success, error) in
+        PostNewStudentLocation(student:student!) { (success, error) in
             if success{
                 let tabController = self.storyboard?.instantiateViewController(withIdentifier: "TabBarController")
                 self.present(tabController!, animated: true)

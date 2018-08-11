@@ -11,7 +11,12 @@ import UIKit
 class LoginViewController: UIViewController , UITextFieldDelegate{
     
     // MARK: Outletss
-    
+    var studentModel : StudentModel {
+        let object = UIApplication.shared.delegate
+        let appDelegate = object as! AppDelegate
+        return appDelegate.studentModel
+    }
+
     @IBOutlet weak var UdacityImageView: UIImageView!
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -47,10 +52,18 @@ class LoginViewController: UIViewController , UITextFieldDelegate{
     }
     // Login
     private func completeLogin() {
-        performUIUpdatesOnMain {
-            self.debugTextLabel.text = ""
-            let controller = self.storyboard!.instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
-            self.present(controller, animated: true, completion: nil)
+        studentModel.LoadStudents() { (error) in
+            if error != nil {
+                performUIUpdatesOnMain {
+                    self.debugTextLabel.text = "Couldn't Load Student Data!"
+                }
+            } else {
+                performUIUpdatesOnMain {
+                    self.debugTextLabel.text = ""
+                    let controller = self.storyboard!.instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
+                    self.present(controller, animated: true, completion: nil)
+                }
+            }
         }
     }
 

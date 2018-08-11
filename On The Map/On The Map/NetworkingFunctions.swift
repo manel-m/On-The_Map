@@ -95,7 +95,7 @@ func DeleteSession (){
     task.resume()
     
 }
-func GetStudentLocations(completionHandler: @escaping (_ success: Bool, _ error: String?) -> Void) {
+func GetStudents(completionHandler: @escaping (_ result: [[String:AnyObject]]?, _ error: String?) -> Void) {
     var request = URLRequest(url: URL(string: "https://parse.udacity.com/parse/classes/StudentLocation?limit=100&order=-updatedAt")!)
     request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
     request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
@@ -104,17 +104,17 @@ func GetStudentLocations(completionHandler: @escaping (_ success: Bool, _ error:
     let task = session.dataTask(with: request) { data, response, error in
         // Guard: was there an error?
         guard (error == nil) else {
-            completionHandler(false, "There was an error with your request: \(error!)")
+            completionHandler(nil, "There was an error with your request: \(error!)")
             return
         }
         // Guard: Is there a succesful HTTP 2XX response?
         guard let statusCode = (response as? HTTPURLResponse)?.statusCode, statusCode >= 200 && statusCode <= 299 else {
-            completionHandler(false, "Your request returned a status code other than 2xx!")
+            completionHandler(nil, "Your request returned a status code other than 2xx!")
             return
         }
         // Guard: any data returned?
         guard let data = data else {
-            completionHandler(false, "No data was returned by the request!")
+            completionHandler(nil, "No data was returned by the request!")
             return
         }
         //Parse the data
@@ -122,21 +122,20 @@ func GetStudentLocations(completionHandler: @escaping (_ success: Bool, _ error:
         do {
             parsedResult = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String:AnyObject]
         } catch {
-            completionHandler(false, "Could not parse student locations data as JSON")
+            completionHandler(nil, "Could not parse student locations data as JSON")
             return
         }
         //Use the data
-        guard let StudentLocations = parsedResult["results"] as? [[String: AnyObject]] else {
-            completionHandler(false, "Cannot find key 'results' in student locations")
+        guard let Students = parsedResult["results"] as? [[String: AnyObject]] else {
+            completionHandler(nil, "Cannot find key 'results' in student locations")
             return
         }
-        //init dictionarry
-        completionHandler(true, nil)
+        completionHandler(Students, nil)
     }
     task.resume()
 }
 
-func PostNewStudentLocation(completionHandler: @escaping (_ success: Bool, _ error: String?) -> Void) {
+func PostNewStudentLocation(student: StudentInformation, completionHandler: @escaping (_ success: Bool, _ error: String?) -> Void) {
     //Build the URL, Configure the request
     var request = URLRequest(url: URL(string: "https://parse.udacity.com/parse/classes/StudentLocation")!)
     request.httpMethod = "POST"
@@ -144,11 +143,11 @@ func PostNewStudentLocation(completionHandler: @escaping (_ success: Bool, _ err
     request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
     request.addValue("application/json", forHTTPHeaderField: "Content-Type")
     
-    let firstName = "manel"//UdacityConstants.ParameterValues.Username
-    let latitude = StudentInformation.Latitude//location?.coordinate.latitude
-    let longitude = StudentInformation.Longitude //location?.coordinate.longitude
-    let mapString = StudentInformation.MapString
-    let mediaURL = StudentInformation.MediaURL
+    let firstName = student.FirstName!
+    let latitude = student.Latitude! //location?.coordinate.latitude
+    let longitude = student.Longitude! //location?.coordinate.longitude
+    let mapString = student.MapString!
+    let mediaURL = student.MediaURL!
     let body = "{\"uniqueKey\": \"1244\", \"firstName\": \"\(firstName)\", \"lastName\": \"\",\"mapString\": \"\(mapString)\", \"mediaURL\": \"\(mediaURL)\",\"latitude\":\(latitude), \"longitude\": \(longitude)}"
     request.httpBody = body.data(using: .utf8)
     // Make the request

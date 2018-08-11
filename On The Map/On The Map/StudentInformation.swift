@@ -22,8 +22,10 @@ class StudentInformation {
         FirstName = data["firstName"] as? String
         LastName = data["lastName"] as? String
         MapString = data["mapString"] as? String
-        MediaURL = data["mediaUrl"] as? String
+        MediaURL = data["mediaURL"] as? String
         Latitude = data["latitude"] as? Double
-        Longitude = data["longtitude"] as? Double
+        Longitude = data["longitude"] as? Double
     }
+    
+    init() {}
 }

@@ -52,13 +52,15 @@ class InformationPostingViewController: UIViewController, UITextFieldDelegate {
                     return
                 }
                 let mapVC = self.storyboard?.instantiateViewController(withIdentifier: "ShowLocationMapController") as! ShowLocationMapController
-               // mapVC.location = location
-//                mapVC.mapString = self.LocationTextField.text!
-//                mapVC.mediaURL = self.UrlTextField.text!
-                StudentInformation.MapString = self.LocationTextField.text!
-                StudentInformation.MediaURL = self.UrlTextField.text!
-                StudentInformation.Latitude = (location?.coordinate.latitude)!
-                StudentInformation.Longitude = (location?.coordinate.longitude)!
+                
+                let student = StudentInformation()
+                student.FirstName = "manel" //UdacityConstants.ParameterValues.Username
+                student.MapString = self.LocationTextField.text!
+                student.MediaURL = self.UrlTextField.text!
+                student.Latitude = (location?.coordinate.latitude)!
+                student.Longitude = (location?.coordinate.longitude)!
+                
+                mapVC.student = student
                 
                 self.navigationController?.pushViewController(mapVC, animated: true)
                     }

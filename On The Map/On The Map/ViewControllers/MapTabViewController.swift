@@ -13,10 +13,10 @@ class MapTabViewController : UIViewController, MKMapViewDelegate {
     
     // Properties
     @IBOutlet weak var mapView: MKMapView!
-    var locations : [[String : Any]] {
+    var studentModel : StudentModel {
         let object = UIApplication.shared.delegate
         let appDelegate = object as! AppDelegate
-        return appDelegate.locations
+        return appDelegate.studentModel
     }
     //  Life Cycle
     override func viewDidAppear(_ animated: Bool) {
@@ -28,16 +28,17 @@ class MapTabViewController : UIViewController, MKMapViewDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        let object = UIApplication.shared.delegate
-        let appDelegate = object as! AppDelegate
-        createAnnotations(locations: appDelegate.locations)
+//        let object = UIApplication.shared.delegate
+//        let appDelegate = object as! AppDelegate
+        createAnnotations()
     }
     
-    func createAnnotations(locations: [[String: Any]]) {
+    func createAnnotations() {
+        let students = studentModel.Students
         var annotations = [MKPointAnnotation]()
-        for dictionary in locations {
+        for student in students {
             
-            if let latitude = dictionary["latitude"] as? Double, let longitude = dictionary["longitude"] as? Double, let firstName = dictionary["firstName"] as? String, let lastName = dictionary["lastName"] as? String, let mediaURL = dictionary["mediaURL"] as? String {
+            if let latitude = student.Latitude, let longitude = student.Longitude, let firstName = student.FirstName, let lastName = student.LastName, let mediaURL = student.MediaURL {
                 // This is a version of the Double type.
                 let lat = CLLocationDegrees(latitude)
                 let long = CLLocationDegrees(longitude)
@@ -89,25 +90,37 @@ class MapTabViewController : UIViewController, MKMapViewDelegate {
             }
         }
     }
-    
-    private func completeLogOut() {
-        performUIUpdatesOnMain {
-            let controller = self.storyboard!.instantiateViewController(withIdentifier: "LoginViewController")
-            self.present(controller, animated: true, completion: nil)
-        }
-    }
+//    
+//    private func completeLogOut() {
+//        performUIUpdatesOnMain {
+//            let controller = self.storyboard!.instantiateViewController(withIdentifier: "LoginViewController")
+//            self.present(controller, animated: true, completion: nil)
+//        }
+//    }
     
     @IBAction func Refresh(_ sender: Any) {
-        let object = UIApplication.shared.delegate
-        let appDelegate = object as! AppDelegate
-        appDelegate.refreshLocations() { (result, error) in
-            print("DATA REFRESHED")
-            performUIUpdatesOnMain {
-                let old = self.mapView.annotations
-                self.mapView.removeAnnotations(old)
-                self.createAnnotations(locations:self.locations)
+        studentModel.LoadStudents { (error) in
+            if error != nil {
+                print(error) // handel error
+            } else {
+                performUIUpdatesOnMain {
+                    let old = self.mapView.annotations
+                    self.mapView.removeAnnotations(old)
+                    self.createAnnotations()
+                }
             }
         }
+        
+//        let object = UIApplication.shared.delegate
+//        let appDelegate = object as! AppDelegate
+//        appDelegate.refreshLocations() { (result, error) in
+//            print("DATA REFRESHED")
+//            performUIUpdatesOnMain {
+//                let old = self.mapView.annotations
+//                self.mapView.removeAnnotations(old)
+//                self.createAnnotations(locations:self.locations)
+//            }
+//        }
     }
     
     @IBAction func LogOut(_ sender: Any) {
