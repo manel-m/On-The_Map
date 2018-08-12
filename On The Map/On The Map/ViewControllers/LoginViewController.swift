@@ -23,7 +23,7 @@ class LoginViewController: UIViewController , UITextFieldDelegate{
     @IBOutlet weak var loginButton: UIButton!
   //  @IBOutlet weak var debugTextLabel: UILabel!
     
-    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,7 +89,7 @@ class LoginViewController: UIViewController , UITextFieldDelegate{
             }
         }
     }
-    
+    // handle error
     func displayError(_ error: String) {
         let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Dismiss", style: .default))

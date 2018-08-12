@@ -61,7 +61,6 @@ class ShowLocationMapController: UIViewController, MKMapViewDelegate {
                 self.present(tabController!, animated: true)
             } else{
                 performUIUpdatesOnMain {
-                    //print(error!)// handle error
                     self.displayError("Could Not Add New Student.")
                 }
             }

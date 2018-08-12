@@ -55,7 +55,7 @@ func UdacityAuthentication (completionHandler: @escaping (_ success: Bool, _ err
     }
     task.resume()
 }
-
+// delete session
 func DeleteSession (){
      //Build the URL, Configure the request
     var request = URLRequest(url: URL(string: "https://www.udacity.com/api/session")!)
@@ -95,6 +95,7 @@ func DeleteSession (){
     task.resume()
     
 }
+//get students data
 func GetStudents(completionHandler: @escaping (_ result: [[String:AnyObject]]?, _ error: String?) -> Void) {
     var request = URLRequest(url: URL(string: "https://parse.udacity.com/parse/classes/StudentLocation?limit=100&order=-updatedAt")!)
     request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
@@ -134,7 +135,7 @@ func GetStudents(completionHandler: @escaping (_ result: [[String:AnyObject]]?, 
     }
     task.resume()
 }
-
+// add new student
 func PostNewStudentLocation(student: StudentInformation, completionHandler: @escaping (_ success: Bool, _ error: String?) -> Void) {
     //Build the URL, Configure the request
     var request = URLRequest(url: URL(string: "https://parse.udacity.com/parse/classes/StudentLocation")!)
