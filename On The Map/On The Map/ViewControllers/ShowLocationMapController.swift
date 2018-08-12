@@ -15,6 +15,7 @@ class ShowLocationMapController: UIViewController, MKMapViewDelegate {
     // Properties
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var navBar: UINavigationItem!
+    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     
     var student:StudentInformation?
 
@@ -44,7 +45,17 @@ class ShowLocationMapController: UIViewController, MKMapViewDelegate {
     }
     
     @IBAction func FinishButton(_ sender: Any) {
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        view.addSubview(activityIndicator)
+        
+        activityIndicator.startAnimating()
         PostNewStudentLocation(student:student!) { (success, error) in
+            performUIUpdatesOnMain {
+                self.activityIndicator.startAnimating()
+            }
+            
             if success{
                 let tabController = self.storyboard?.instantiateViewController(withIdentifier: "TabBarController")
                 self.present(tabController!, animated: true)
