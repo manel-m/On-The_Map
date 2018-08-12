@@ -18,6 +18,8 @@ class InformationPostingViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var FindLocationButton: UIButton!
     @IBOutlet weak var debugTextLabel: UILabel!
     
+    lazy var geocoder = CLGeocoder()
+    
     //UITextFieldDelegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -42,29 +44,30 @@ class InformationPostingViewController: UIViewController, UITextFieldDelegate {
         if location.isEmpty || Url.isEmpty {
             debugTextLabel.text = "Location or Website Empty."
         } else {
-            LocationManager.sharedInstance.getReverseGeoCodedLocation(address: LocationTextField.text!) {
-            (location:CLLocation?, placemark:CLPlacemark?, error:NSError?) in
+            geocoder.geocodeAddressString(LocationTextField.text!) {
+                (placemarks, error) in
                 if error != nil {
                     self.debugTextLabel.text = "Location Not Found"
                     return
                 }
-                guard let _ = location else {
-                    return
+                
+                if let placemark = placemarks?[0] {
+                    let location = placemark.location!
+                    let mapVC = self.storyboard?.instantiateViewController(withIdentifier: "ShowLocationMapController") as! ShowLocationMapController
+                    
+                    let student = StudentInformation()
+                    student.FirstName = "manel" //UdacityConstants.ParameterValues.Username
+                    student.MapString = self.LocationTextField.text!
+                    student.MediaURL = self.UrlTextField.text!
+                    student.Latitude = location.coordinate.latitude
+                    student.Longitude = location.coordinate.longitude
+                    
+                    mapVC.student = student
+                    
+                    self.navigationController?.pushViewController(mapVC, animated: true)
                 }
-                let mapVC = self.storyboard?.instantiateViewController(withIdentifier: "ShowLocationMapController") as! ShowLocationMapController
-                
-                let student = StudentInformation()
-                student.FirstName = "manel" //UdacityConstants.ParameterValues.Username
-                student.MapString = self.LocationTextField.text!
-                student.MediaURL = self.UrlTextField.text!
-                student.Latitude = (location?.coordinate.latitude)!
-                student.Longitude = (location?.coordinate.longitude)!
-                
-                mapVC.student = student
-                
-                self.navigationController?.pushViewController(mapVC, animated: true)
-                    }
-                }
+            }
+        }
     }
     
     @IBAction func Cancel(_ sender: Any) {

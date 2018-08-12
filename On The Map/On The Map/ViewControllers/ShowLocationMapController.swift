@@ -66,4 +66,10 @@ class ShowLocationMapController: UIViewController, MKMapViewDelegate {
             }
         }
     }
+    
+    func displayError(_ error: String) {
+        let alert = UIAlertController(title: "Error", message: "Invalid Location", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .default))
+        self.present(alert, animated: true, completion: nil)
+    }
 }

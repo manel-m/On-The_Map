@@ -77,13 +77,19 @@ class LoginViewController: UIViewController , UITextFieldDelegate{
             UdacityConstants.ParameterValues.Password = password
         }
         UdacityAuthentication { (success, error) in
-            if success {
-                self.completeLogin()
-            } else {
-                performUIUpdatesOnMain {
-                    self.debugTextLabel.text = "Invalid Email or Password."
+            performUIUpdatesOnMain {
+                if success {
+                    self.completeLogin()
+                } else {
+                    self.displayError("Login Failed")
                 }
             }
         }
-        }
+    }
+    
+    func displayError(_ error: String) {
+        let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .default))
+        self.present(alert, animated: true, completion: nil)
+    }
 }
