@@ -95,7 +95,6 @@
                     </view>
                     <connections>
                         <outlet property="UdacityImageView" destination="EEN-Vu-1pe" id="5ZX-WH-ghm"/>
-                        <outlet property="debugTextLabel" destination="qZV-Ol-Xqx" id="Yjv-LX-WS5"/>
                         <outlet property="loginButton" destination="dKX-s7-8dC" id="ZEc-2D-TcO"/>
                         <outlet property="passwordTextField" destination="1QJ-Im-230" id="YnC-hD-DsV"/>
                         <outlet property="usernameTextField" destination="fK9-2v-eRn" id="qr7-wW-dvJ"/>
@@ -371,7 +370,6 @@
                         <outlet property="LocationTextField" destination="86H-Ja-gPW" id="p3l-2y-1SD"/>
                         <outlet property="UrlTextField" destination="XuT-ta-Njm" id="aa3-Gp-4bM"/>
                         <outlet property="WorldIconImageView" destination="1cw-OL-KtI" id="Z8N-cT-RAE"/>
-                        <outlet property="debugTextLabel" destination="5oJ-R5-2cS" id="bsZ-AC-hKr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="abu-dT-QK6" sceneMemberID="firstResponder"/>

@@ -50,22 +50,14 @@ class TableTabViewController: UITableViewController {
     @IBAction func Refresh(_ sender: Any) {
         studentModel.LoadStudents { (error) in
             if error != nil {
-                print(error) // handel error
+                self.displayError("Could Not Load Data")
             } else{
                 performUIUpdatesOnMain {
                     self.tableView.reloadData()
                 }
             }
         }
-//        GetStudentLocations { (success, error) in
-//            if success {
-//                performUIUpdatesOnMain {
-//                    self.tableView.reloadData()
-//                }
-//            } else {
-//                print(error)// handel error
-//            }
-//        }
+
     }
     
     @IBAction func LogOut(_ sender: Any) {
@@ -74,6 +66,11 @@ class TableTabViewController: UITableViewController {
             let controller = self.storyboard!.instantiateViewController(withIdentifier: "LoginViewController")
             self.present(controller, animated: true, completion: nil)
         }
-        
-}
+   }
+    func displayError(_ error: String) {
+        let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .default))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
 }

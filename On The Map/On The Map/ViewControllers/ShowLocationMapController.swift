@@ -61,14 +61,15 @@ class ShowLocationMapController: UIViewController, MKMapViewDelegate {
                 self.present(tabController!, animated: true)
             } else{
                 performUIUpdatesOnMain {
-                    print(error!)// handle error
+                    //print(error!)// handle error
+                    self.displayError("Could Not Add New Student.")
                 }
             }
         }
     }
     
     func displayError(_ error: String) {
-        let alert = UIAlertController(title: "Error", message: "Invalid Location", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Dismiss", style: .default))
         self.present(alert, animated: true, completion: nil)
     }

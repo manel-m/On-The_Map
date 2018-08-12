@@ -21,7 +21,7 @@ class LoginViewController: UIViewController , UITextFieldDelegate{
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
-    @IBOutlet weak var debugTextLabel: UILabel!
+  //  @IBOutlet weak var debugTextLabel: UILabel!
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
@@ -35,7 +35,7 @@ class LoginViewController: UIViewController , UITextFieldDelegate{
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        debugTextLabel.text = ""
+        //debugTextLabel.text = ""
         usernameTextField.delegate = self
         passwordTextField.delegate = self
     }
@@ -55,11 +55,12 @@ class LoginViewController: UIViewController , UITextFieldDelegate{
         studentModel.LoadStudents() { (error) in
             if error != nil {
                 performUIUpdatesOnMain {
-                    self.debugTextLabel.text = "Couldn't Load Student Data!"
+                   // self.debugTextLabel.text = "Couldn't Load Student Data!"
+                    self.displayError("Couldn't Load Student Data!")
                 }
             } else {
                 performUIUpdatesOnMain {
-                    self.debugTextLabel.text = ""
+                    //self.debugTextLabel.text = ""
                     let controller = self.storyboard!.instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
                     self.present(controller, animated: true, completion: nil)
                 }
@@ -71,7 +72,8 @@ class LoginViewController: UIViewController , UITextFieldDelegate{
         let username = usernameTextField.text!
         let password = passwordTextField.text!
         if username.isEmpty || password.isEmpty {
-            debugTextLabel.text = "Empty Email or Password."
+            //debugTextLabel.text = "Empty Email or Password."
+            self.displayError("Empty Email or Password.")
         } else {
             UdacityConstants.ParameterValues.Username = username
             UdacityConstants.ParameterValues.Password = password
@@ -81,7 +83,8 @@ class LoginViewController: UIViewController , UITextFieldDelegate{
                 if success {
                     self.completeLogin()
                 } else {
-                    self.displayError("Login Failed")
+                    //debugTextLabel.text = "Login Failed"
+                    self.displayError("Invalid Email or Password")
                 }
             }
         }

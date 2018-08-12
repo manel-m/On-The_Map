@@ -16,7 +16,7 @@ class InformationPostingViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var LocationTextField: UITextField!
     @IBOutlet weak var UrlTextField: UITextField!
     @IBOutlet weak var FindLocationButton: UIButton!
-    @IBOutlet weak var debugTextLabel: UILabel!
+    //@IBOutlet weak var debugTextLabel: UILabel!
     
     lazy var geocoder = CLGeocoder()
     
@@ -32,7 +32,7 @@ class InformationPostingViewController: UIViewController, UITextFieldDelegate {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        debugTextLabel.text = ""
+        //debugTextLabel.text = ""
         LocationTextField.delegate = self
         UrlTextField.delegate = self
     }
@@ -42,12 +42,14 @@ class InformationPostingViewController: UIViewController, UITextFieldDelegate {
         let location = LocationTextField.text!
         let Url = UrlTextField.text!
         if location.isEmpty || Url.isEmpty {
-            debugTextLabel.text = "Location or Website Empty."
+            //debugTextLabel.text = "Location or Website Empty."
+            self.displayError("Location or Website Empty.")
         } else {
             geocoder.geocodeAddressString(LocationTextField.text!) {
                 (placemarks, error) in
                 if error != nil {
-                    self.debugTextLabel.text = "Location Not Found"
+                    //self.debugTextLabel.text = "Location Not Found"
+                    self.displayError("Location Not Found")
                     return
                 }
                 
@@ -73,5 +75,11 @@ class InformationPostingViewController: UIViewController, UITextFieldDelegate {
     @IBAction func Cancel(_ sender: Any) {
         dismiss(animated: true, completion: nil)
         }
+    
+    func displayError(_ error: String) {
+        let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .default))
+        self.present(alert, animated: true, completion: nil)
+    }
     
 }

@@ -28,8 +28,6 @@ class MapTabViewController : UIViewController, MKMapViewDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-//        let object = UIApplication.shared.delegate
-//        let appDelegate = object as! AppDelegate
         createAnnotations()
     }
     
@@ -83,25 +81,18 @@ class MapTabViewController : UIViewController, MKMapViewDelegate {
         if control == view.rightCalloutAccessoryView {
             let app = UIApplication.shared
             if let toOpen = view.annotation?.subtitle! {
-                //app.openURL(URL(string: toOpen)!)
                 if let url = URL(string: toOpen) {
                     app.openURL(url)
                 }
             }
         }
     }
-//    
-//    private func completeLogOut() {
-//        performUIUpdatesOnMain {
-//            let controller = self.storyboard!.instantiateViewController(withIdentifier: "LoginViewController")
-//            self.present(controller, animated: true, completion: nil)
-//        }
-//    }
     
     @IBAction func Refresh(_ sender: Any) {
         studentModel.LoadStudents { (error) in
             if error != nil {
-                print(error) // handel error
+                self.displayError("Could Not Load Data")
+                
             } else {
                 performUIUpdatesOnMain {
                     let old = self.mapView.annotations
@@ -110,17 +101,6 @@ class MapTabViewController : UIViewController, MKMapViewDelegate {
                 }
             }
         }
-        
-//        let object = UIApplication.shared.delegate
-//        let appDelegate = object as! AppDelegate
-//        appDelegate.refreshLocations() { (result, error) in
-//            print("DATA REFRESHED")
-//            performUIUpdatesOnMain {
-//                let old = self.mapView.annotations
-//                self.mapView.removeAnnotations(old)
-//                self.createAnnotations(locations:self.locations)
-//            }
-//        }
     }
     
     @IBAction func LogOut(_ sender: Any) {
@@ -129,5 +109,10 @@ class MapTabViewController : UIViewController, MKMapViewDelegate {
             let controller = self.storyboard!.instantiateViewController(withIdentifier: "LoginViewController")
             self.present(controller, animated: true, completion: nil)
         }
+    }
+    func displayError(_ error: String) {
+        let alert = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .default))
+        self.present(alert, animated: true, completion: nil)
     }
 }
