@@ -53,7 +53,7 @@ class ShowLocationMapController: UIViewController, MKMapViewDelegate {
         activityIndicator.startAnimating()
         PostNewStudentLocation(student:student!) { (success, error) in
             performUIUpdatesOnMain {
-                self.activityIndicator.startAnimating()
+                self.activityIndicator.stopAnimating()
             }
             
             if success{

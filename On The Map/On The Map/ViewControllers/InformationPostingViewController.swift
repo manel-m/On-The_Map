@@ -16,6 +16,7 @@ class InformationPostingViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var LocationTextField: UITextField!
     @IBOutlet weak var UrlTextField: UITextField!
     @IBOutlet weak var FindLocationButton: UIButton!
+    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     //@IBOutlet weak var debugTextLabel: UILabel!
     
     lazy var geocoder = CLGeocoder()
@@ -39,6 +40,12 @@ class InformationPostingViewController: UIViewController, UITextFieldDelegate {
     
     
     @IBAction func FindLocation(_ sender: Any) {
+        activityIndicator.center = self.view.center
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+        
         let location = LocationTextField.text!
         let Url = UrlTextField.text!
         if location.isEmpty || Url.isEmpty {
@@ -54,19 +61,22 @@ class InformationPostingViewController: UIViewController, UITextFieldDelegate {
                 }
                 
                 if let placemark = placemarks?[0] {
-                    let location = placemark.location!
-                    let mapVC = self.storyboard?.instantiateViewController(withIdentifier: "ShowLocationMapController") as! ShowLocationMapController
-                    
-                    let student = StudentInformation()
-                    student.FirstName = "manel" //UdacityConstants.ParameterValues.Username
-                    student.MapString = self.LocationTextField.text!
-                    student.MediaURL = self.UrlTextField.text!
-                    student.Latitude = location.coordinate.latitude
-                    student.Longitude = location.coordinate.longitude
-                    
-                    mapVC.student = student
-                    
-                    self.navigationController?.pushViewController(mapVC, animated: true)
+                    performUIUpdatesOnMain {
+                        let location = placemark.location!
+                        let mapVC = self.storyboard?.instantiateViewController(withIdentifier: "ShowLocationMapController") as! ShowLocationMapController
+                        
+                        let student = StudentInformation()
+                        student.FirstName = "manel" //UdacityConstants.ParameterValues.Username
+                        student.MapString = self.LocationTextField.text!
+                        student.MediaURL = self.UrlTextField.text!
+                        student.Latitude = location.coordinate.latitude
+                        student.Longitude = location.coordinate.longitude
+                        
+                        mapVC.student = student
+                        
+                        self.activityIndicator.stopAnimating()
+                        self.navigationController?.pushViewController(mapVC, animated: true)
+                    }
                 }
             }
         }
